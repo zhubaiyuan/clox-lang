@@ -1,0 +1,24 @@
+*.DS_Store
+
+# Intermediate and built stuff.
+.sass-cache/
+/build/
+/gen/
+clox
+*.class
+
+.idea/
+
+# I keep a scratch file at the top level to try stuff out.
+temp.lox
+
+# XCode user-specific stuff.
+xcuserdata/
+
+# Dart stuff.
+/tool/.dart_tool/
+/tool/.packages
+
+a.out
+
+.vscode/
