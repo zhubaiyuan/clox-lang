@@ -31,6 +31,11 @@ static char advance()
     return scanner.current[-1];
 }
 
+static char peek()
+{
+    return *scanner.current;
+}
+
 static bool match(char expected)
 {
     if (isAtEnd())
@@ -61,8 +66,31 @@ static Token errorToken(const char *message)
     return token;
 }
 
+static void skipWhitespace()
+{
+    for (;;)
+    {
+        char c = peek();
+        switch (c)
+        {
+        case ' ':
+        case '\r':
+        case '\t':
+            advance();
+            break;
+        case '\n':
+            scanner.line++;
+            advance();
+            break;
+        default:
+            return;
+        }
+    }
+}
+
 Token scanToken()
 {
+    skipWhitespace();
     scanner.start = scanner.current;
     if (isAtEnd())
         return makeToken(TOKEN_EOF);
